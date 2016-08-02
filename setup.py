@@ -17,14 +17,14 @@ setup_status = setup(
 
 install_status = False
 install_path = ''
-if "install_egg_info" in sys.argv:
+if "install" in sys.argv:
     lib_paths = [get_python_lib()]
     if lib_paths[0].startswith("/usr/lib/"):
         # We have to try also with an explicit prefix of /usr/local in order to
         # catch Debian's custom user site-packages directory.
         lib_paths.append(get_python_lib(prefix="/usr/local"))
     for lib_path in lib_paths:
-        existing_path = os.path.abspath(os.path.join(lib_path, "python_util-0.1.egg-info"))
+        existing_path = os.path.abspath(os.path.join(lib_path, "python_util-0.1-py2.7.egg"))
         if os.path.exists(existing_path):
             install_path = existing_path
             install_status = True
