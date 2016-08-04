@@ -30,8 +30,11 @@ def get_today_date(format = "%Y-%m-%d"):
 def get_before_date(before_days = 0, format = "%Y-%m-%d"):
     return (datetime.date.today()-datetime.timedelta(days=before_days)).strftime(format)
 
+def get_after_date(after_days = 0, format = "%Y-%m-%d"):
+    return (datetime.date.today()-datetime.timedelta(days=-after_days)).strftime(format)
+
 def get_cur_datetime(format = '%Y-%m-%d %H:%M:%S'):
-    return datetime.datetime.today().strftime(format)
+    return time.strftime(format)
 
 def get_cur_timestamp(length = 10):
     str_timestamp = str(int(time.time() * 1000000))
