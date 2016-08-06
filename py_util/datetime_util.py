@@ -7,22 +7,22 @@ import time
 import datetime
 
 def get_year():
-    return datetime.datetime.today().strftime('%Y')
+    return time.strftime('%Y')
 
 def get_month():
-    return datetime.datetime.today().strftime('%m')
+    return time.strftime('%m')
 
-def get_date():
-    return datetime.datetime.today().strftime('%d')
+def get_dattime
+    return time.strftime('%d')
 
-def get_hour():
-    return datetime.datetime.today().strftime('%H')
+def get_houtime
+    return time.strftime('%H')
 
-def get_minute():
-    return datetime.datetime.today().strftime('%M')
+def get_mintime
+    return time.strftime('%M')
 
-def get_second():
-    return datetime.datetime.today().strftime('%S')
+def get_sectime
+    return time.strftime('%S')
 
 def get_today_date(format = "%Y-%m-%d"):
     return datetime.date.today().strftime(format)
