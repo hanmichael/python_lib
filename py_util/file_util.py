@@ -118,3 +118,60 @@ def list_dir(dir_path, filter_file = False, filter_dir = False):
     except Exception, e:
         sys.stderr.write('list dir:[%s] exception:[%s]' % (dir_path, str(e)))
         return []
+
+def write_file(file_path, content, append=False):
+    """
+    Write content to file
+
+    @file_path: file path
+    @content: write content
+    @append: True express append content to file
+
+    return True/False
+    """
+    try:
+        mode = 'w'
+        if append: mode = 'a'
+        fh = open(file_path, mode)
+        fh.write(content)
+        fh.close()
+        return True
+    except Exception, e:
+        sys.stderr.write('write file:[%s] exception:[%s]' % (file_path, str(e)))
+        return False
+
+def read_file(file_path):
+    """
+    Read file
+
+    @file_path: file path
+
+    return content
+    """
+    try:
+        mode = 'r'
+        fh = open(file_path, mode)
+        content = fh.read()
+        fh.close()
+        return content
+    except Exception, e:
+        sys.stderr.write('read file:[%s] exception:[%s]' % (file_path, str(e)))
+        return None
+
+def read_file_lines(file_path):
+    """
+    Read file
+
+    @file_path: file path
+
+    return content
+    """
+    try:
+        mode = 'r'
+        fh = open(file_path, mode)
+        lines = fh.readlines()
+        fh.close()
+        return lines
+    except Exception, e:
+        sys.stderr.write('read file:[%s] lines exception:[%s]' % (file_path, str(e)))
+        return []
