@@ -14,7 +14,7 @@ def get_year():
     try:
         return time.strftime('%Y')
     except Exception,e:
-        sys.stderr.write('get [year] exception:[%s]' % (str(e)))
+        print 'get [year] exception:[%s]' % (str(e))
         return None
 
 def get_month():
@@ -25,7 +25,7 @@ def get_month():
     try:
         return time.strftime('%m')
     except Exception,e:
-        sys.stderr.write('get [month] exception:[%s]' % (str(e)))
+        print 'get [month] exception:[%s]' % (str(e))
         return None
 
 def get_date():
@@ -36,7 +36,7 @@ def get_date():
     try:
         return time.strftime('%d')
     except Exception,e:
-        sys.stderr.write('get [date] exception:[%s]' % (str(e)))
+        print 'get [date] exception:[%s]' % (str(e))
         return None
 
 def get_hour():
@@ -47,7 +47,7 @@ def get_hour():
     try:
         return time.strftime('%H')
     except Exception,e:
-        sys.stderr.write('get [hour] exception:[%s]' % (str(e)))
+        print 'get [hour] exception:[%s]' % (str(e))
         return None
 
 def get_minute():
@@ -58,7 +58,7 @@ def get_minute():
     try:
         return time.strftime('%M')
     except Exception,e:
-        sys.stderr.write('get [minute] exception:[%s]' % (str(e)))
+        print 'get [minute] exception:[%s]' % (str(e))
         return None
 
 def get_second():
@@ -69,7 +69,7 @@ def get_second():
     try:
         return time.strftime('%S')
     except Exception,e:
-        sys.stderr.write('get [minute] exception:[%s]' % (str(e)))
+        print 'get [minute] exception:[%s]' % (str(e))
         return None
 
 def get_today_date(format = "%Y-%m-%d"):
@@ -81,7 +81,7 @@ def get_today_date(format = "%Y-%m-%d"):
     try:
         return datetime.date.today().strftime(format)
     except Exception,e:
-        sys.stderr.write('get today [date] exception:[%s]' % (str(e)))
+        print 'get today [date] exception:[%s]' % (str(e))
         return None
 
 def get_yesterday_date(format = "%Y-%m-%d"):
@@ -93,7 +93,7 @@ def get_yesterday_date(format = "%Y-%m-%d"):
     try:
         return get_before_date(1)
     except Exception,e:
-        sys.stderr.write('get yesterday [date] exception:[%s]' % (str(e)))
+        print 'get yesterday [date] exception:[%s]' % (str(e))
         return None
 
 def get_tomorrow_date(format = "%Y-%m-%d"):
@@ -105,7 +105,7 @@ def get_tomorrow_date(format = "%Y-%m-%d"):
     try:
         return get_after_date(1)
     except Exception,e:
-        sys.stderr.write('get yesterday [date] exception:[%s]' % (str(e)))
+        print 'get yesterday [date] exception:[%s]' % (str(e))
         return None
 
 def get_before_date(before_days = 0, format = "%Y-%m-%d"):
@@ -118,7 +118,7 @@ def get_before_date(before_days = 0, format = "%Y-%m-%d"):
     try:
         return (datetime.date.today()-datetime.timedelta(days=before_days)).strftime(format)
     except Exception,e:
-        sys.stderr.write('get before [date] exception:[%s]' % (str(e)))
+        print 'get before [date] exception:[%s]' % (str(e))
         return None
 
 def get_after_date(after_days = 0, format = "%Y-%m-%d"):
@@ -131,7 +131,7 @@ def get_after_date(after_days = 0, format = "%Y-%m-%d"):
     try:
         return (datetime.date.today()-datetime.timedelta(days=-after_days)).strftime(format)
     except Exception,e:
-        sys.stderr.write('get after [date] exception:[%s]' % (str(e)))
+        print 'get after [date] exception:[%s]' % (str(e))
         return None
 
 def get_cur_datetime(format = '%Y-%m-%d %H:%M:%S'):
@@ -143,7 +143,7 @@ def get_cur_datetime(format = '%Y-%m-%d %H:%M:%S'):
     try:
         return time.strftime(format)
     except Exception,e:
-        sys.stderr.write('get current [datetime] exception:[%s]' % (str(e)))
+        print 'get current [datetime] exception:[%s]' % (str(e))
         return None
 
 def get_cur_timestamp(length = 10):
@@ -159,7 +159,7 @@ def get_cur_timestamp(length = 10):
         str_timestamp = str(int(time.time() * 1000000))
         return str_timestamp[:length]
     except Exception,e:
-        sys.stderr.write('get current [timestamp] exception:[%s]' % (str(e)))
+        print 'get current [timestamp] exception:[%s]' % (str(e))
         return None
 
 def timestamp_2_date(timestamp, format = "%Y-%m-%d"):
@@ -172,7 +172,7 @@ def timestamp_2_date(timestamp, format = "%Y-%m-%d"):
     try:
         return datetime.date.fromtimestamp(int(str(timestamp)[:10])).strftime(format)
     except Exception,e:
-        sys.stderr.write('[timestamp] 2 [date] exception:[%s]' % (str(e)))
+        print '[timestamp] 2 [date] exception:[%s]' % (str(e))
         return None
 
 def timestamp_2_datetime(timestamp, format = "%Y-%m-%d %H:%M:%S"):
@@ -185,5 +185,5 @@ def timestamp_2_datetime(timestamp, format = "%Y-%m-%d %H:%M:%S"):
     try:
         return datetime.datetime.fromtimestamp(int(str(timestamp)[:10])).strftime(format)
     except Exception,e:
-        sys.stderr.write('[timestamp] 2 [datetime] exception:[%s]' % (str(e)))
+        print '[timestamp] 2 [datetime] exception:[%s]' % (str(e))
         return None

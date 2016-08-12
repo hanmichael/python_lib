@@ -33,7 +33,7 @@ def make_dir(dir_path, mode=0777):
         os.mkdir(dir_path, mode)
         return True
     except Exception, e:
-        sys.stderr.write('make dir:[%s] exception:[%s]' % (dir_path, str(e)))
+        print 'make dir:[%s] exception:[%s]' % (dir_path, str(e))
         return False
 
 def remove_dir(dir_path):
@@ -50,7 +50,7 @@ def remove_dir(dir_path):
         shutil.rmtree(dir_path)
         return True
     except Exception, e:
-        sys.stderr.write('remove dir:[%s] exception:[%s]' % (dir_path, str(e)))
+        print 'remove dir:[%s] exception:[%s]' % (dir_path, str(e))
         return False
 
 def touch_file(file_path, ignore_exist = False):
@@ -63,7 +63,7 @@ def touch_file(file_path, ignore_exist = False):
     return True/False
     """
     if exists(file_path) and ignore_exist is False:
-        sys.stderr.write('file has exist touch fail [%s]' % file_path)
+        print 'file has exist touch fail [%s]' % file_path
         return False
     try:
         fh = open(file_path, 'w')
@@ -71,7 +71,7 @@ def touch_file(file_path, ignore_exist = False):
         fh.close()
         return True
     except Exception, e:
-        sys.stderr.write('touch file:[%s] exception:[%s]' % (file_path, str(e)))
+        print 'touch file:[%s] exception:[%s]' % (file_path, str(e))
         return False
 
 def remove_file(file_path):
@@ -88,7 +88,7 @@ def remove_file(file_path):
         os.remove(file_path)
         return True
     except Exception, e:
-        sys.stderr.write('remove file:[%s] exception:[%s]' % (file_path, str(e)))
+        print 'remove file:[%s] exception:[%s]' % (file_path, str(e))
         return False
 
 def list_dir(dir_path, filter_file = False, filter_dir = False):
@@ -116,7 +116,7 @@ def list_dir(dir_path, filter_file = False, filter_dir = False):
                 result_list.append(sub_file + '/')
         return result_list
     except Exception, e:
-        sys.stderr.write('list dir:[%s] exception:[%s]' % (dir_path, str(e)))
+        print 'list dir:[%s] exception:[%s]' % (dir_path, str(e))
         return []
 
 def write_file(file_path, content, append=False):
@@ -137,7 +137,7 @@ def write_file(file_path, content, append=False):
         fh.close()
         return True
     except Exception, e:
-        sys.stderr.write('write file:[%s] exception:[%s]' % (file_path, str(e)))
+        print 'write file:[%s] exception:[%s]' % (file_path, str(e))
         return False
 
 def read_file(file_path):
@@ -155,7 +155,7 @@ def read_file(file_path):
         fh.close()
         return content
     except Exception, e:
-        sys.stderr.write('read file:[%s] exception:[%s]' % (file_path, str(e)))
+        print 'read file:[%s] exception:[%s]' % (file_path, str(e))
         return None
 
 def read_file_lines(file_path):
@@ -173,5 +173,5 @@ def read_file_lines(file_path):
         fh.close()
         return lines
     except Exception, e:
-        sys.stderr.write('read file:[%s] lines exception:[%s]' % (file_path, str(e)))
+        print 'read file:[%s] lines exception:[%s]' % (file_path, str(e))
         return []

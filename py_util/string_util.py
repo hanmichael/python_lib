@@ -15,5 +15,5 @@ def is_string(obj):
     try:
         return isinstance(obj, (str, unicode))
     except Exception,e:
-        sys.stderr.write('check obj is string exception:[%s]' % (str(e)))
+        print 'check obj is string exception:[%s]' % (str(e))
         return False

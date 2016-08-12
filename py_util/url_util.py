@@ -19,7 +19,7 @@ def url_quote(url):
     try:
         return urllib2.quote(url)
     except Exception,e:
-        sys.stderr.write('url:[%s] quote exception:[%s]' % (url, str(e)))
+        print 'url:[%s] quote exception:[%s]' % (url, str(e))
         return None
 
 def url_unquote(quote_url):
@@ -33,7 +33,7 @@ def url_unquote(quote_url):
     try:
         return urllib2.unquote(quote_url)
     except Exception,e:
-        sys.stderr.write('quote url:[%s] unquote exception:[%s]' % (quote_url, str(e)))
+        print 'quote url:[%s] unquote exception:[%s]' % (quote_url, str(e))
         return None
 
 def url_md5(url):
@@ -47,7 +47,7 @@ def url_md5(url):
     try:
         return md5.md5(url).hexdigest()
     except Exception,e:
-        sys.stderr.write('url:[%s] calc md5 exception:[%s]' % (url, str(e)))
+        print 'url:[%s] calc md5 exception:[%s]' % (url, str(e))
         return None
 
 def url_signature(url):
@@ -62,7 +62,7 @@ def url_signature(url):
         signature = url_md5(url)
         return signature[0:8]+'-'+signature[8:16]+'-'+signature[16:24]+'-'+signature[24:32]
     except Exception,e:
-        sys.stderr.write('url:[%s] calc signature exception:[%s]' % (url, str(e)))
+        print 'url:[%s] calc signature exception:[%s]' % (url, str(e))
         return None
 
 def url_encode(url):
@@ -76,7 +76,7 @@ def url_encode(url):
     try:
         return base64.urlsafe_b64encode(url)
     except Exception,e:
-        sys.stderr.write('url:[%s] encode exception:[%s]' % (url, str(e)))
+        print 'url:[%s] encode exception:[%s]' % (url, str(e))
         return None
 
 def url_decode(encode_url):
@@ -90,5 +90,5 @@ def url_decode(encode_url):
     try:
         return base64.urlsafe_b64decode(encode_url)
     except Exception,e:
-        sys.stderr.write('url:[%s] decode exception:[%s]' % (encode_url, str(e)))
+        print 'url:[%s] decode exception:[%s]' % (encode_url, str(e))
         return None
