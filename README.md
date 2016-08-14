@@ -4,6 +4,7 @@ python 基础库
 ## 2. 使用方法
 1. python setup.py install
 2. form py_util import file_util
+3. test: 单元测试
 
 ## 3. 依赖
 1. version: python2.7
