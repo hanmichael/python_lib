@@ -3,7 +3,12 @@
 
 import os
 import sys
+import logging
 import shutil
+
+FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
+logging.basicConfig(format=FORMAT)
+logger = logging.getLogger('file_util')
 
 def exists(dir_path):
     """
@@ -28,12 +33,13 @@ def make_dir(dir_path, mode=0777):
     return True/False
     """
     if exists(dir_path):
-        return False
+        logger.warning('dir:[%s] has exist' % dir_path)
+        return True
     try:
         os.mkdir(dir_path, mode)
         return True
     except Exception, e:
-        print 'make dir:[%s] exception:[%s]' % (dir_path, str(e))
+        logger.error('make dir:[%s] exception:[%s]' % (dir_path, str(e)))
         return False
 
 def remove_dir(dir_path):
@@ -50,7 +56,7 @@ def remove_dir(dir_path):
         shutil.rmtree(dir_path)
         return True
     except Exception, e:
-        print 'remove dir:[%s] exception:[%s]' % (dir_path, str(e))
+        logger.error('remove dir:[%s] exception:[%s]' % (dir_path, str(e)))
         return False
 
 def touch_file(file_path, ignore_exist = False):
@@ -63,15 +69,14 @@ def touch_file(file_path, ignore_exist = False):
     return True/False
     """
     if exists(file_path) and ignore_exist is False:
-        print 'file has exist touch fail [%s]' % file_path
+        logger.error('file has exist touch fail [%s]' % file_path)
         return False
     try:
         fh = open(file_path, 'w')
-        fh.write('')
         fh.close()
         return True
     except Exception, e:
-        print 'touch file:[%s] exception:[%s]' % (file_path, str(e))
+        logger.error('touch file:[%s] exception:[%s]' % (file_path, str(e)))
         return False
 
 def remove_file(file_path):
@@ -88,7 +93,7 @@ def remove_file(file_path):
         os.remove(file_path)
         return True
     except Exception, e:
-        print 'remove file:[%s] exception:[%s]' % (file_path, str(e))
+        logger.error('remove file:[%s] exception:[%s]' % (file_path, str(e)))
         return False
 
 def list_dir(dir_path, filter_file = False, filter_dir = False):
@@ -116,8 +121,26 @@ def list_dir(dir_path, filter_file = False, filter_dir = False):
                 result_list.append(sub_file + '/')
         return result_list
     except Exception, e:
-        print 'list dir:[%s] exception:[%s]' % (dir_path, str(e))
+        logger.error('list dir:[%s] exception:[%s]' % (dir_path, str(e)))
         return []
+
+def read_file(file_path):
+    """
+    Read file
+
+    @file_path: file path
+
+    return content
+    """
+    try:
+        mode = 'r'
+        fh = open(file_path, mode)
+        content = fh.read()
+        fh.close()
+        return content
+    except Exception, e:
+        logger.error('read file:[%s] exception:[%s]' % (file_path, str(e)))
+        return None
 
 def write_file(file_path, content, append=False):
     """
@@ -137,26 +160,8 @@ def write_file(file_path, content, append=False):
         fh.close()
         return True
     except Exception, e:
-        print 'write file:[%s] exception:[%s]' % (file_path, str(e))
+        logger.error('write file:[%s] exception:[%s]' % (file_path, str(e)))
         return False
-
-def read_file(file_path):
-    """
-    Read file
-
-    @file_path: file path
-
-    return content
-    """
-    try:
-        mode = 'r'
-        fh = open(file_path, mode)
-        content = fh.read()
-        fh.close()
-        return content
-    except Exception, e:
-        print 'read file:[%s] exception:[%s]' % (file_path, str(e))
-        return None
 
 def read_file_lines(file_path):
     """
@@ -173,5 +178,5 @@ def read_file_lines(file_path):
         fh.close()
         return lines
     except Exception, e:
-        print 'read file:[%s] lines exception:[%s]' % (file_path, str(e))
+        logger.error('read file:[%s] lines exception:[%s]' % (file_path, str(e)))
         return []

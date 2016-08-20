@@ -4,7 +4,12 @@
 import os
 import sys
 import time
+import logging
 import datetime
+
+FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
+logging.basicConfig(format=FORMAT)
+logger = logging.getLogger('datetime_util')
 
 def get_year():
     """
@@ -14,7 +19,7 @@ def get_year():
     try:
         return time.strftime('%Y')
     except Exception,e:
-        print 'get [year] exception:[%s]' % (str(e))
+        logger.error('get [year] exception:[%s]' % (str(e)))
         return None
 
 def get_month():
@@ -25,7 +30,7 @@ def get_month():
     try:
         return time.strftime('%m')
     except Exception,e:
-        print 'get [month] exception:[%s]' % (str(e))
+        logger.error('get [month] exception:[%s]' % (str(e)))
         return None
 
 def get_day():
@@ -36,7 +41,7 @@ def get_day():
     try:
         return time.strftime('%d')
     except Exception,e:
-        print 'get [date] exception:[%s]' % (str(e))
+        logger.error('get [date] exception:[%s]' % (str(e)))
         return None
 
 def get_hour():
@@ -47,7 +52,7 @@ def get_hour():
     try:
         return time.strftime('%H')
     except Exception,e:
-        print 'get [hour] exception:[%s]' % (str(e))
+        logger.error('get [hour] exception:[%s]' % (str(e)))
         return None
 
 def get_minute():
@@ -58,7 +63,7 @@ def get_minute():
     try:
         return time.strftime('%M')
     except Exception,e:
-        print 'get [minute] exception:[%s]' % (str(e))
+        logger.error('get [minute] exception:[%s]' % (str(e)))
         return None
 
 def get_second():
@@ -69,7 +74,7 @@ def get_second():
     try:
         return time.strftime('%S')
     except Exception,e:
-        print 'get [minute] exception:[%s]' % (str(e))
+        logger.error('get [minute] exception:[%s]' % (str(e)))
         return None
 
 def get_today_date(format = "%Y-%m-%d"):
@@ -81,7 +86,7 @@ def get_today_date(format = "%Y-%m-%d"):
     try:
         return datetime.date.today().strftime(format)
     except Exception,e:
-        print 'get today [date] exception:[%s]' % (str(e))
+        logger.error('get today [date] exception:[%s]' % (str(e)))
         return None
 
 def get_yesterday_date(format = "%Y-%m-%d"):
@@ -93,7 +98,7 @@ def get_yesterday_date(format = "%Y-%m-%d"):
     try:
         return get_before_date(1, format)
     except Exception,e:
-        print 'get yesterday [date] exception:[%s]' % (str(e))
+        logger.error('get yesterday [date] exception:[%s]' % (str(e)))
         return None
 
 def get_tomorrow_date(format = "%Y-%m-%d"):
@@ -105,7 +110,7 @@ def get_tomorrow_date(format = "%Y-%m-%d"):
     try:
         return get_after_date(1, format)
     except Exception,e:
-        print 'get yesterday [date] exception:[%s]' % (str(e))
+        logger.error('get yesterday [date] exception:[%s]' % (str(e)))
         return None
 
 def get_before_date(before_days = 0, format = "%Y-%m-%d"):
@@ -118,7 +123,7 @@ def get_before_date(before_days = 0, format = "%Y-%m-%d"):
     try:
         return (datetime.date.today()-datetime.timedelta(days=before_days)).strftime(format)
     except Exception,e:
-        print 'get before [date] exception:[%s]' % (str(e))
+        logger.error('get before [date] exception:[%s]' % (str(e)))
         return None
 
 def get_after_date(after_days = 0, format = "%Y-%m-%d"):
@@ -131,7 +136,7 @@ def get_after_date(after_days = 0, format = "%Y-%m-%d"):
     try:
         return (datetime.date.today()-datetime.timedelta(days=-after_days)).strftime(format)
     except Exception,e:
-        print 'get after [date] exception:[%s]' % (str(e))
+        logger.error('get after [date] exception:[%s]' % (str(e)))
         return None
 
 def get_cur_datetime(format = '%Y-%m-%d %H:%M:%S'):
@@ -143,7 +148,7 @@ def get_cur_datetime(format = '%Y-%m-%d %H:%M:%S'):
     try:
         return time.strftime(format)
     except Exception,e:
-        print 'get current [datetime] exception:[%s]' % (str(e))
+        logger.error('get current [datetime] exception:[%s]' % (str(e)))
         return None
 
 def get_cur_timestamp(length = 10):
@@ -159,7 +164,7 @@ def get_cur_timestamp(length = 10):
         str_timestamp = str(int(time.time() * 1000000))
         return str_timestamp[:length]
     except Exception,e:
-        print 'get current [timestamp] exception:[%s]' % (str(e))
+        logger.error('get current [timestamp] exception:[%s]' % (str(e)))
         return None
 
 def timestamp_2_date(timestamp, format = "%Y-%m-%d"):
@@ -172,7 +177,7 @@ def timestamp_2_date(timestamp, format = "%Y-%m-%d"):
     try:
         return datetime.date.fromtimestamp(int(str(timestamp)[:10])).strftime(format)
     except Exception,e:
-        print '[timestamp] 2 [date] exception:[%s]' % (str(e))
+        logger.error('[timestamp] 2 [date] exception:[%s]' % (str(e)))
         return None
 
 def timestamp_2_datetime(timestamp, format = "%Y-%m-%d %H:%M:%S"):
@@ -185,7 +190,7 @@ def timestamp_2_datetime(timestamp, format = "%Y-%m-%d %H:%M:%S"):
     try:
         return datetime.datetime.fromtimestamp(int(str(timestamp)[:10])).strftime(format)
     except Exception,e:
-        print '[timestamp] 2 [datetime] exception:[%s]' % (str(e))
+        logger.error('[timestamp] 2 [datetime] exception:[%s]' % (str(e)))
         return None
 
 def date_2_timestamp(date_str, format = "%Y-%m-%d"):
@@ -198,7 +203,7 @@ def date_2_timestamp(date_str, format = "%Y-%m-%d"):
     try:
         return int(time.mktime(datetime.datetime.strptime(date_str, format).timetuple()))
     except Exception,e:
-        print '[date] 2 [timestamp] exception:[%s]' % (str(e))
+        logger.error('[date] 2 [timestamp] exception:[%s]' % (str(e)))
         return None
 
 def datetime_2_timestamp(datetime_str, format = "%Y-%m-%d %H:%M:%S"):
@@ -211,5 +216,5 @@ def datetime_2_timestamp(datetime_str, format = "%Y-%m-%d %H:%M:%S"):
     try:
         return int(time.mktime(datetime.datetime.strptime(datetime_str, format).timetuple()))
     except Exception,e:
-        print '[datetime] 2 [timestamp] exception:[%s]' % (str(e))
+        logger.error('[datetime] 2 [timestamp] exception:[%s]' % (str(e)))
         return None
