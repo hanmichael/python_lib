@@ -9,7 +9,9 @@ python 基础库
 ## 3. 依赖
 1. version: python2.7
 2. 第三方库: 
-   1. requests
+   1. Requests >= 2.10.1
+   2. tldextract >= 2.0.1
+3. 依赖的第三方库在install的时候会自动安装，用户无需自己安装
 
 ## 4. 基础库
 1. datetime_util: 日期和时间相关api
