@@ -2,16 +2,52 @@
 # -*- coding: utf-8 -*-
 
 import os
+import re
 import sys
 import urllib
 import urllib2
 import md5
 import base64
 import logging
+import tldextract
+import warnings
+#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('url_util')
+
+# global var
+URL_PATTERN = re.compile(
+    r'^'
+    r'((http|ftp)s?://)?'  # scheme
+    r'([a-z_\d-]+:[a-z_\d-]+@)?'  # user:password
+    r'(www\.)?'  # www.
+    r'((?<!\.)[a-z\d\.-]+\.[a-z]{2,6}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|localhost)'  # domain
+    r'(:\d{2,})?'  # port number
+    r'(/[a-z\d_%\+-]*)*'  # folders
+    r'(\.[a-z\d_%\+-]+)*'  # file extension
+    r'(\?[a-z\d_\+%-=]*)?'  # query string
+    r'(#\S*)?'  # hash
+    r'$',
+    re.IGNORECASE
+)
+
+def url_valid(url):
+    """
+    Check Url is valid
+
+    @url: raw url string
+
+    return True/False
+    """
+    try:
+        if URL_PATTERN.match(url):
+            return True
+        return False
+    except Exception,e:
+        logger.error('check url:[%s] is valid exception:[%s]' % (url, str(e)))
+        return False
 
 def url_quote(url):
     """
@@ -96,4 +132,42 @@ def url_decode(encode_url):
         return base64.urlsafe_b64decode(encode_url)
     except Exception,e:
         logger.error('url:[%s] decode exception:[%s]' % (encode_url, str(e)))
+        return None
+
+def get_host(url):
+    """
+    Url get host
+
+    @url: url string
+
+    return host or None
+    """
+    try:
+        if url_valid(url) is False:
+            logger.warning('url:[%s] is invalid' % url)
+            return None
+        extract_obj = tldextract.extract(url)
+        host = extract_obj.subdomain + "." + extract_obj.domain + "." + extract_obj.suffix
+        return host.strip('.')
+    except Exception,e:
+        logger.error('url:[%s] get host exception:[%s]' % (url, str(e)))
+        return None
+
+def get_domain(url):
+    """
+    Url get domain
+
+    @url: url string
+
+    return domain or None
+    """
+    try:
+        if url_valid(url) is False:
+            logger.warning('url:[%s] is invalid' % url)
+            return None
+        extract_obj = tldextract.extract(url)
+        domain = extract_obj.domain + "." + extract_obj.suffix
+        return domain.strip('.')
+    except Exception,e:
+        logger.error('url:[%s] get host exception:[%s]' % (url, str(e)))
         return None

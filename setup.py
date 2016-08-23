@@ -10,9 +10,10 @@ setup_status = setup(
     package_data = {
         '': ['*.py']
     },
-    extras_require = {
-        'request_util': ["Requests >= 2.10"]
-    },
+    install_requires = [
+        'Requests >= 2.10.1',
+        'tldextract >= 2.0.1'
+    ],
     author = "chenguolin",
     author_email = "cgl1079743846@gmail.com",
     description = "This is an about Python util package"

@@ -6,6 +6,8 @@ import sys
 import json
 import logging
 import requests
+import warnings
+#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
