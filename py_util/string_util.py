@@ -1,26 +1,116 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import re
 import os
 import sys
 import logging
 import warnings
+import json_util
 #warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('string_util')
 
-def is_string(obj):
-    """
-    Check obj is str or unicode instance
+# global var
+URL_PATTERN = re.compile(
+    r'^'
+    r'((http|ftp)s?://)?'  # scheme
+    r'([a-z_\d-]+:[a-z_\d-]+@)?'  # user:password
+    r'(www\.)?'  # www.
+    r'((?<!\.)[a-z\d\.-]+\.[a-z]{2,6}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|localhost)'  # domain
+    r'(:\d{2,})?'  # port number
+    r'(/[a-z\d_%\+-]*)*'  # folders
+    r'(\.[a-z\d_%\+-]+)*'  # file extension
+    r'(\?[a-z\d_\+%-=]*)?'  # query string
+    r'(#\S*)?'  # hash
+    r'$',
+    re.IGNORECASE
+)
+EMAIL_PATTERN = re.compile(
+    r'^[a-zA-Z\d\._\+-]+@([a-z\d-]+\.?[a-z\d-]+)+\.[a-z]{2,4}$',
+    re.IGNORECASE
+)
+IP_PATTERN = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$')
 
-    @obj: input value
+def is_string(input):
+    """
+    Check input is str or unicode instance
+
+    @input: input value
 
     return True/False
     """
     try:
-        return isinstance(obj, (str, unicode))
+        return isinstance(input, (str, unicode))
     except Exception,e:
-        logger.error('check obj is string exception:[%s]' % (str(e)))
+        logger.error('check is string exception:[%s]' % (str(e)))
+        return False
+
+def is_url(input, allowed_schemas = None):
+    """
+    Check input is a valid url
+
+    @input: input obj
+    @allowed_schemas: allowed schemas list [http, ftp, https ...], default allowed any schema
+
+    return True/False
+    """
+    try:
+        if URL_PATTERN.match(input):
+            ret = True
+        else:
+            ret = False
+        if ret and allowed_schemas:
+            return ret and any([input.startswith(s) for s in allowed_schemas])
+        return ret
+    except Exception,e:
+        logger.error('check is url exception:[%s]' % (str(e)))
+        return False
+
+def is_email(input):
+    """
+    Check input is a valid email
+
+    @input: input email string
+
+    return True/False
+    """
+    try:
+        if EMAIL_PATTERN.match(input):
+            return True
+        return False
+    except Exception,e:
+        logger.error('check is email exception:[%s]' % (str(e)))
+        return False
+
+def is_json(input):
+    """
+    Check input string is a valid json obj
+
+    @input: input string
+
+    return True/False
+    """
+    try:
+        return json_util.str_2_json(input)
+    except Exception,e:
+        logger.error('check is json exception:[%s]' % (str(e)))
+        return False
+
+def is_ip(input):
+    """
+    Check input string is a valid ip
+
+    @input: input string
+
+    return True/False
+    """
+    try:
+        if IP_PATTERN.match(input):
+            return True
+        return False
+    except Exception,e:
+        logger.error('check is json exception:[%s]' % (str(e)))
         return False
