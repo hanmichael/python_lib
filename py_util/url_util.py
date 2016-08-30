@@ -169,5 +169,5 @@ def get_domain(url):
         domain = extract_obj.domain + "." + extract_obj.suffix
         return domain.strip('.')
     except Exception,e:
-        logger.error('url:[%s] get host exception:[%s]' % (url, str(e)))
+        logger.error('url:[%s] get domain exception:[%s]' % (url, str(e)))
         return None
