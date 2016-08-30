@@ -19,3 +19,6 @@ python 基础库
 3. url_util: url操作相关api
 4. request_util: http request操作api
 5. string_util: string 基础api
+6. shell_util: linux shell操作api
+7. mysql_util: mysql操作api
+8. json_util: json api
