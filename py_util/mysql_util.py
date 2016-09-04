@@ -122,7 +122,7 @@ def insert(db, sql):
     """
     try:
         cursor = db.cursor()
-        transaction(db, cursor, sql):
+        transaction(db, cursor, sql)
         return True
     except Exception, e:
         logger.error('table insert sql:[%s] exception:[%s]' % (sql, str(e)))
@@ -139,7 +139,7 @@ def update(db, sql):
     """
     try:
         cursor = db.cursor()
-        transaction(db, cursor, sql):
+        transaction(db, cursor, sql)
         return True
     except Exception, e:
         logger.error('table update sql:[%s] exception:[%s]' % (sql, str(e)))
@@ -156,7 +156,7 @@ def delete(db, sql):
     """
     try:
         cursor = db.cursor()
-        transaction(db, cursor, sql):
+        transaction(db, cursor, sql)
         return True
     except Exception, e:
         logger.error('table delete sql:[%s] exception:[%s]' % (sql, str(e)))
