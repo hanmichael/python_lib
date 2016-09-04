@@ -42,6 +42,7 @@ def crawl_final_url(url, wait_seconds = 20):
     Crawl final url, URL_A->URL_B->URL_C, return URL_C
 
     @url: url link
+    @wait_seconds: implicitly wait seconds, default equal 20
 
     return final url
     """
