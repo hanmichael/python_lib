@@ -26,3 +26,12 @@ python 基础库
 7. mysql_util: mysql操作api
 8. json_util: json api
 9. crawl_util: crawl page util api
+
+## 5. 常见问题
+```
+1. "EnvironmentError: mysql_config not found"
+   解决方法: sudo apt-get install libmysqlclient-dev
+2. "error: command 'gcc' failed with exit status 1"
+   解决方法: sudo apt-get install python-dev
+```
+
