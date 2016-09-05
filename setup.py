@@ -33,9 +33,9 @@ def install_phantomjs():
     try:
         os.system('wget %s -O phantomjs.tar.bz2' % phantomjs_pkg_url)
         os.system('tar jxvf phantomjs.tar.bz2')
-        os.system('cp phantomjs/bin/phantomjs /bin/')
-        os.system('chmod 755 /bin/phantomjs')
-        os.system('rm -rf phantomjs.tar.bz2')
+        os.system('sudo cp ./phantomjs-2.1.1*/bin/phantomjs /bin/')
+        os.system('sudo chmod 755 /bin/phantomjs')
+        os.system('rm -rf phantomjs*')
     except Exception,e:
         print "install PhantomJs exception:[%s]" % str(e)
 
