@@ -32,5 +32,4 @@ def config_parse(config_file):
         return config_dict
     except Exception,e:
         logger.error('parse config file:[%s] exception:[%s]\n' % (config_file, str(e)))
-        return None
         return {}
