@@ -13,7 +13,7 @@ FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d]
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('json_util')
 
-def json_2_str(json_obj):
+def json_2_str(json_obj, readable=False):
     """
     Json obj 2 string obj
 
@@ -22,7 +22,10 @@ def json_2_str(json_obj):
     return str obj or None
     """
     try:
-        str_obj = json.dumps(json_obj, ensure_ascii=False)
+        if readable:
+            str_obj = json.dumps(json_obj, ensure_ascii=False, indent=4, sort_keys=True)
+        else:
+            str_obj = json.dumps(json_obj, ensure_ascii=False)
         if isinstance(str_obj, unicode):
             str_obj = str_obj.encode('utf-8')
         return str_obj
@@ -43,5 +46,3 @@ def str_2_json(str_obj):
     except Exception,e:
         logger.error('json loads exception:[%s]' % (str(e)))
         return None
-
-
