@@ -26,6 +26,7 @@ python 基础库
 7. mysql_util: mysql操作api
 8. json_util: json api
 9. crawl_util: crawl page util api
+10. config_parse: parse config file
 
 ## 5. 常见问题
 ```
