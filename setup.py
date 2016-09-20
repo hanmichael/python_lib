@@ -15,7 +15,8 @@ setup_status = setup(
         'Requests >= 2.10.1',
         'tldextract >= 2.0.1',
         'MySQL-python >= 1.2.5',
-        'selenium >= 2.0.0'
+        'selenium >= 2.0.0',
+        'jieba >= 0.1',
     ],
     author = "chenguolin",
     author_email = "cgl1079743846@gmail.com",
@@ -40,6 +41,20 @@ def install_phantomjs():
         print "install PhantomJs exception:[%s]" % str(e)
 
 install_phantomjs()
+
+##############################################################################################################
+def install_jieba():
+    try:
+        import jieba
+    except Exception,e:
+        pkg_url = 'https://pypi.python.org/packages/f6/86/9e721cc52075a07b7d07eb12bcb5dde771d35332a3dae1e14ae4290a197a/jieba-0.38.zip#md5=c4b5f25631218caec249837870ed067a'
+        #os.system('wget %s -O jieba.zip' % pkg_url)
+        os.system('unzip jieba.zip')
+        os.system('cd jieba-0.38')
+        os.system('sudo python setup install')
+        os.system('rm -rf jieba-0.38')
+
+install_jieba()
 
 ##############################################################################################################
 install_status = False
