@@ -27,6 +27,7 @@ python 基础库
 8. json_util: json api
 9. crawl_util: crawl page util api
 10. config_parse: parse config file
+11. word_segment: word segment tool
 
 ## 5. 常见问题
 ```
@@ -35,4 +36,3 @@ python 基础库
 2. "error: command 'gcc' failed with exit status 1"
    解决方法: sudo apt-get install python-dev
 ```
-
