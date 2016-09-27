@@ -86,6 +86,6 @@ check_install_status()
 try:
     os.system('rm -rf dist')
     os.system('rm -rf build')
-    os.system('rm -rf python_util.egg-info')
+    os.system('rm -rf *.egg-info')
 except Exception,e:
     print "clean install info exception:[%s]" % str(e)
