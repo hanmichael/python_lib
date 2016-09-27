@@ -31,8 +31,10 @@ python 基础库
 
 ## 5. 常见问题
 ```
-1. "EnvironmentError: mysql_config not found"
+1. "ImportError: No module named setuptools"
+   解决方法: sudo apt-get install python-setuptools
+2. "EnvironmentError: mysql_config not found"
    解决方法: sudo apt-get install libmysqlclient-dev
-2. "error: command 'gcc' failed with exit status 1"
+3. "error: command 'gcc' failed with exit status 1"
    解决方法: sudo apt-get install python-dev
 ```
