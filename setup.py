@@ -64,7 +64,7 @@ def check_install_status():
             # catch Debian's custom user site-packages directory.
             lib_paths.append(get_python_lib(prefix="/usr/local"))
         for lib_path in lib_paths:
-            existing_path = os.path.abspath(os.path.join(lib_path, "python_util-0.1-py2.7.egg"))
+            existing_path = os.path.abspath(os.path.join(lib_path, "python_util-1.0-py2.7.egg"))
             if os.path.exists(existing_path):
                 install_path = existing_path
                 install_status = True
