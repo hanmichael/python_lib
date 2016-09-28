@@ -7,6 +7,7 @@ import sys
 import logging
 import warnings
 import json_util
+from hashlib import md5
 #warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
@@ -114,3 +115,45 @@ def is_ip(input):
     except Exception,e:
         logger.error('check is json exception:[%s]' % (str(e)))
         return False
+
+def hash_128(input_str):
+    """
+    Hash string to 128 bit int
+
+    @input_str: input string
+
+    return 128 bit int
+    """
+    try:
+        return int(md5(input_str).hexdigest(), 16)
+    except Exception,e:
+        logger.error('hash 128 exception:[%s]' % (str(e)))
+        return None
+
+def hash_64(input_str):
+    """
+    Hash string to 64 bit int
+
+    @input_str: input string
+
+    return 64 bit int
+    """
+    try:
+        return int(md5(input_str).hexdigest()[8:24], 16)
+    except Exception,e:
+        logger.error('hash 64 exception:[%s]' % (str(e)))
+        return None
+
+def hash_32(input_str):
+    """
+    Hash string to 32 bit int
+
+    @input_str: input string
+
+    return 32 bit int
+    """
+    try:
+        return int(md5(input_str).hexdigest()[12:20], 16)
+    except Exception,e:
+        logger.error('hash 32 exception:[%s]' % (str(e)))
+        return None

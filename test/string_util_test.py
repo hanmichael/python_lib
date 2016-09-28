@@ -59,5 +59,11 @@ class StringUtilTest(unittest.TestCase):
         ip_str = '127.0.0.1'
         self.assertTrue(string_util.is_ip(ip_str))
 
+    def test_hash(self):
+        input_str = 'http://www.baidu.com/?q=query&key=value'
+        print string_util.hash_128(input_str)
+        print string_util.hash_64(input_str)
+        print string_util.hash_32(input_str)
+
 if __name__ == '__main__':
     unittest.main()
