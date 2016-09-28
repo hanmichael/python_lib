@@ -37,4 +37,5 @@ python 基础库
    解决方法: sudo apt-get install libmysqlclient-dev
 3. "error: command 'gcc' failed with exit status 1"
    解决方法: sudo apt-get install python-dev
+4. 安装 jieba pkg的时候会出现tar包下载失败问题，所以并未把jieba的依赖写在setup里面，而是单独在setup脚本内写一个函数使用安装
 ```
