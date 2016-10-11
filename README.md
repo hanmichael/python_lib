@@ -14,6 +14,7 @@ python 基础库
    2. tldextract >= 2.0.1
    3. selenium >= 2.0.0
    4. PhantomJs >= 2.1.1
+   5. jieba >= 0.1
 4. 依赖的第三方库在install的时候会自动安装，用户无需自己安装
 
 ## 4. 基础库
@@ -28,6 +29,7 @@ python 基础库
 9. crawl_util: crawl page util api
 10. config_parse: parse config file
 11. word_segment: word segment tool
+12. simhash: python calc simhash api
 
 ## 5. 常见问题
 ```
