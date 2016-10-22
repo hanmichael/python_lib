@@ -31,5 +31,5 @@ def config_parse(config_file):
                 config_dict[section][option] = value
         return config_dict
     except Exception,e:
-        logger.error('parse config file:[%s] exception:[%s]\n' % (config_file, str(e)))
+        logger.error('parse config file:[%s] exception:[%s]' % (config_file, str(e)))
         return {}

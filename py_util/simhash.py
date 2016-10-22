@@ -76,7 +76,7 @@ class Simhash(object):
                 new_seg_list = new_seg_list[:self.top_sentence]
             return self.__calc_simhash__(new_seg_list)
         except Exception,e:
-            logger.error('calc doc string:[%s] exception:[%s]\n' % (self.doc_str, str(e)))
+            logger.error('calc doc string:[%s] exception:[%s]' % (self.doc_str, str(e)))
             return None
 
 def calc_simhash(doc_str, hash_bit=64, top_sentence=None):
@@ -92,7 +92,7 @@ def calc_simhash(doc_str, hash_bit=64, top_sentence=None):
         simhash_obj = Simhash(doc_str, hash_bit, top_sentence)
         return simhash_obj.calc()
     except Exception,e:
-        logger.error('calc_simhash function exception:[%s]\n' % str(e))
+        logger.error('calc_simhash function exception:[%s]' % str(e))
         return None
 
 def hamming_distance(simhash1, simhash2):
@@ -112,7 +112,7 @@ def hamming_distance(simhash1, simhash2):
             return None
         return sum(c1 != c2 for c1, c2 in zip(bin_str1, bin_str2))
     except Exception,e:
-        logger.error('hamming_distance function exception:[%s]\n' % str(e))
+        logger.error('hamming_distance function exception:[%s]' % str(e))
         return None
 
 def is_similar(simhash1, simhash2, min_dis_count = 3):
@@ -131,5 +131,5 @@ def is_similar(simhash1, simhash2, min_dis_count = 3):
             return False
         return True
     except Exception,e:
-        logger.error('is_similar function exception:[%s]\n' % str(e))
+        logger.error('is_similar function exception:[%s]' % str(e))
         return False

@@ -34,7 +34,7 @@ def crawl_page(url):
         driver.get(url)
         return driver.page_source
     except Exception,e:
-        logger.error('url:[%s] crawl html page exception:[%s]\n' % (url, str(e)))
+        logger.error('url:[%s] crawl html page exception:[%s]' % (url, str(e)))
         return None
 
 def crawl_final_url(url, wait_seconds = 20):
@@ -57,5 +57,5 @@ def crawl_final_url(url, wait_seconds = 20):
         driver.implicitly_wait(wait_seconds) #seconds
         return driver.current_url
     except Exception,e:
-        logger.error('url:[%s] crawl final url exception:[%s]\n' % (url, str(e)))
+        logger.error('url:[%s] crawl final url exception:[%s]' % (url, str(e)))
         return None
