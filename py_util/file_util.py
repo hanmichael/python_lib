@@ -38,7 +38,7 @@ def make_dir(dir_path, mode=0777):
         logger.warning('dir:[%s] has exist' % dir_path)
         return True
     try:
-        os.mkdir(dir_path, mode)
+        os.makedirs(dir_path, mode)
         return True
     except Exception, e:
         logger.error('make dir:[%s] exception:[%s]' % (dir_path, str(e)))

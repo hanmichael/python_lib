@@ -54,35 +54,6 @@ def install_jieba():
         os.system('rm -rf jieba*')
 install_jieba()
 ##############################################################################################################
-def check_install_status():
-    install_status = False
-    install_path = ''
-    if "install" in sys.argv:
-        lib_paths = [get_python_lib()]
-        if lib_paths[0].startswith("/usr/lib/"):
-            # We have to try also with an explicit prefix of /usr/local in order to
-            # catch Debian's custom user site-packages directory.
-            lib_paths.append(get_python_lib(prefix="/usr/local"))
-        for lib_path in lib_paths:
-            existing_path = os.path.abspath(os.path.join(lib_path, "python_util-1.0-py2.7.egg"))
-            if os.path.exists(existing_path):
-                install_path = existing_path
-                install_status = True
-                break
-    if install_status is True:
-        sys.stdout.write('''
-            ==========================================
-            Success to install python_util, path:[%s]'
-            ==========================================
-        ''' % install_path)
-    else:
-        sys.stderr.write('''
-            ==========================================
-            Fail to install python_util'
-            ==========================================
-        ''')
-check_install_status()
-##############################################################################################################
 try:
     os.system('rm -rf dist')
     os.system('rm -rf build')
