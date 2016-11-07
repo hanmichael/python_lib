@@ -16,6 +16,7 @@ python 基础库
    4. PhantomJs >= 2.1.1
    5. jieba >= 0.1
 4. 依赖的第三方库在install的时候会自动安装，用户无需自己安装
+5. 注意: selenium,PhantomJs,jieba通过setuptools无法自动安装, 通过Python代码手动下载实现安装
 
 ## 4. 基础库
 1. datetime_util: 日期和时间相关api

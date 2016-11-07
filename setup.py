@@ -17,8 +17,7 @@ setup_status = setup(
     install_requires = [
         'Requests >= 2.10.1',
         'tldextract >= 2.0.1',
-        'MySQL-python >= 1.2.5',
-        'selenium >= 2.0.0'
+        'MySQL-python >= 1.2.5'
     ],
     author = "chenguolin",
     author_email = "cgl1079743846@gmail.com",
@@ -50,9 +49,20 @@ def install_jieba():
         os.system('wget %s -O jieba.zip' % pkg_url)
         os.system('unzip jieba.zip')
         os.system('mv jieba-* jieba')
-        os.system('cd ./jieba && sudo python setup.py install')
+        os.system('cd ./jieba && sudo python setup.py install && cd ..')
         os.system('rm -rf jieba*')
 install_jieba()
+##############################################################################################################
+def install_selenium():
+    try:
+        import selenium
+    except Exception,e:
+        pkg_url = 'https://pypi.python.org/packages/3a/a3/e4ab60a0229a85f468a36367bc0672a4bca2720f24391eda33704a5f0ad5/selenium-3.0.1.tar.gz#md5=ed5da4a35e1e643a53386d3e8f5960af'
+        os.system('wget %s -O selenium.tar.gz' % pkg_url)
+        os.system('tar -xvzf selenium.tar.gz')
+        os.system('cd ./selenium && sudo python setup.py install && cd ..')
+        os.system('rm -rf selenium*')
+install_selenium()
 ##############################################################################################################
 try:
     os.system('rm -rf dist')
