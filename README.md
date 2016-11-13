@@ -28,7 +28,7 @@ python 基础库, 封装了大部分常用的操作, 提供API直接调用
 6. shell_util: linux shell操作api
 7. mysql_util: mysql操作api
 8. json_util: json api
-9. crawl_util: crawl page util api
+9. crawl_util: crawl page util api  //Mac os下使用Phantomjs的API可能会无法使用
 10. config_parse: parse config file
 11. word_segment: word segment tool
 12. simhash: python calc simhash api
