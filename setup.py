@@ -23,9 +23,16 @@ setup_status = setup(
     author_email = "cgl1079743846@gmail.com",
     description = "This is an about Python util package"
 )
+
+# check platform
+import platform
+platform_system = platform.system()
 ##############################################################################################################
 def install_phantomjs():
-    if os.path.exists('/bin/phantomjs'):
+    phantomjs_bin = '/bin/phantomjs'
+    if platform_system == 'Darwin':
+        phantomjs_bin = '/usr/local/bin/phantomjs'
+    if os.path.exists(phantomjs_bin):
         return
     status, output = commands.getstatusoutput('uname -m')
     phantomjs_pkg_url = 'https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-i686.tar.bz2'
@@ -34,8 +41,13 @@ def install_phantomjs():
     try:
         os.system('wget %s -O phantomjs.tar.bz2' % phantomjs_pkg_url)
         os.system('tar -jxvf phantomjs.tar.bz2')
-        os.system('sudo cp ./phantomjs-2.1.1*/bin/phantomjs /bin/')
-        os.system('sudo chmod 755 /bin/phantomjs')
+        os.system('mv phantomjs-* phantomjs')
+        if platform_system == 'Darwin':
+            os.system('cp ./phantomjs/bin/phantomjs /usr/local/bin/')
+            os.system('chmod 755 /usr/local/bin/phantomjs')
+        else:
+            os.system('sudo cp ./phantomjs/bin/phantomjs /bin/')
+            os.system('sudo chmod 755 /bin/phantomjs')
         os.system('rm -rf ./phantomjs*')
     except Exception,e:
         print "install PhantomJs exception:[%s]" % str(e)
@@ -60,6 +72,7 @@ def install_selenium():
         pkg_url = 'https://pypi.python.org/packages/3a/a3/e4ab60a0229a85f468a36367bc0672a4bca2720f24391eda33704a5f0ad5/selenium-3.0.1.tar.gz#md5=ed5da4a35e1e643a53386d3e8f5960af'
         os.system('wget %s -O selenium.tar.gz' % pkg_url)
         os.system('tar -xvzf selenium.tar.gz')
+        os.system('mv selenium-* selenium')
         os.system('cd ./selenium && sudo python setup.py install && cd ..')
         os.system('rm -rf selenium*')
 install_selenium()

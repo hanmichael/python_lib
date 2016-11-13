@@ -1,5 +1,6 @@
 ## 1. 说明
-python 基础库
+python 基础库, 封装了大部分常用的操作, 提供API直接调用
+安装脚本setup.py对Linux和Mac系统做了兼容
 
 ## 2. 使用方法
 1. python setup.py install
@@ -33,6 +34,7 @@ python 基础库
 12. simhash: python calc simhash api
 
 ## 5. 常见问题
+### 5.1 Ubuntu
 ```
 1. "ImportError: No module named setuptools"
    解决方法: sudo apt-get install python-setuptools
@@ -41,4 +43,11 @@ python 基础库
 3. "error: command 'gcc' failed with exit status 1"
    解决方法: sudo apt-get install python-dev
 4. 安装 jieba pkg的时候会出现tar包下载失败问题，所以并未把jieba的依赖写在setup里面，而是单独在setup脚本内写一个函数使用安装
+```
+### 5.2 Mac 
+```
+1. 首先先安装brew
+   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
+2. "EnvironmentError: mysql_config not found"
+   解决方法: brew isntall mysql
 ```
