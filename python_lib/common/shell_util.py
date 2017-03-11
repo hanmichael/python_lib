@@ -6,11 +6,11 @@ import sys
 import logging
 import warnings
 import commands
-#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('shell_util')
+logger.setLevel(logging.INFO)
 
 class CmdStatus(object):
     def __init__(self, status=-1, output=''):

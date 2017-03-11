@@ -6,11 +6,11 @@ import sys
 import logging
 import warnings
 import ConfigParser
-#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('config_parse')
+logger.setLevel(logging.INFO)
 
 def config_parse(config_file):
     """

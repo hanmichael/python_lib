@@ -7,11 +7,11 @@ import time
 import json
 import logging
 import warnings
-#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('json_util')
+logger.setLevel(logging.INFO)
 
 def json_2_str(json_obj, readable=False):
     """

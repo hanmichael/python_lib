@@ -9,11 +9,11 @@ from py_util import config_parse
 from py_util import file_util
 from snakebite.client import HAClient
 from snakebite.namenode import Namenode
-#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('hdfs_util')
+logger.setLevel(logging.INFO)
 
 def __create_hdfs_client__():
     try:

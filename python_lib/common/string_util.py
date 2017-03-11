@@ -8,11 +8,11 @@ import logging
 import warnings
 import json_util
 from hashlib import md5
-#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('string_util')
+logger.setLevel(logging.INFO)
 
 # global var
 URL_PATTERN = re.compile(

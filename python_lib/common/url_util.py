@@ -11,11 +11,11 @@ import base64
 import logging
 import tldextract
 import warnings
-#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('url_util')
+logger.setLevel(logging.INFO)
 
 # global var
 URL_PATTERN = re.compile(

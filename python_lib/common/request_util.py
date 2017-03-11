@@ -7,11 +7,11 @@ import json
 import logging
 import requests
 import warnings
-#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('request_util')
+logger.setLevel(logging.INFO)
 
 def get(url, params=None, timeout=10, headers=None, cookies=None, proxies=None):
     """

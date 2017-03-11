@@ -8,11 +8,11 @@ import warnings
 import hashlib
 import jieba
 from itertools import groupby
-#warnings.filterwarnings("ignore")
 
 FORMAT = "[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]"
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger("simhash")
+logger.setLevel(logging.INFO)
 
 class Simhash(object):
     def __init__(self, doc_str, hash_bit=64, top_sentence=None):

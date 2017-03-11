@@ -7,11 +7,11 @@ import time
 import logging
 import datetime
 import warnings
-#warnings.filterwarnings('ignore')
 
 FORMAT = '[%(levelname)s] [%(asctime)s] [%(filename)s::%(funcName)s::%(lineno)d] [%(message)s]'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('datetime_util')
+logger.setLevel(logging.INFO)
 
 def get_year():
     """

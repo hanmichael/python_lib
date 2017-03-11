@@ -1,3 +1,0 @@
-Requests >= 2.10.1
-tldextract >= 2.0.1
-MySQL-python >= 1.2.5
