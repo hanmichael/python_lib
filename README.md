@@ -2,24 +2,33 @@
 python 基础库, 封装了大部分常用的操作, 提供API直接调用
 安装脚本setup.py对Linux和Mac系统做了兼容
 
-## 2. 使用方法
-1. python setup.py install
-2. form py_util import file_util
-3. test: 单元测试
+## 2. setup
+```
+setup_status = setup(
+    name = "python_lib",
+    version = "2.0",
+    packages = find_packages(),
+    install_requires = [
+        'Requests >= 2.10.1',
+        'tldextract >= 2.0.1',
+        'MySQL-python >= 1.2.5'
+    ],
+    author = "chenguolin",
+    author_email = "cgl1079743846@gmail.com",
+    description = "This is an about python lib package"
+)
+```
 
-## 3. 依赖
-1. version: python2.7
-2. linux: ubuntu 12.04
-3. requires pkg: 
-   1. Requests >= 2.10.1
-   2. tldextract >= 2.0.1
-   3. selenium >= 2.0.0
-   4. PhantomJs >= 2.1.1
-   5. jieba >= 0.1
-4. 依赖的第三方库在install的时候会自动安装，用户无需自己安装
-5. 注意: selenium,PhantomJs,jieba通过setuptools无法自动安装, 通过Python代码手动下载实现安装
+## 3. 安装使用方法
+1. python setup.py install
+   默认会把python_lib这个egg包安装到python的dist-packages目录下
+2. from python_lib.common import simhash
+   从python_lib的common库引入simhash
 
 ## 4. 基础库
+### 4.1 jieba
+1. jieba
+### 4.2 python_lib
 1. common
 2. database
 3. fslib
