@@ -11,9 +11,6 @@ setup_status = setup(
     name = "python_lib",
     version = "2.0",
     packages = find_packages(),
-    package_data = {
-        '': ['*.py']
-    },
     install_requires = [
         'Requests >= 2.10.1',
         'tldextract >= 2.0.1',

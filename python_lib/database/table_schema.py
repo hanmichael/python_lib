@@ -8,6 +8,6 @@ import sys_path
 import mysql_conf
 
 # Table Class
-Class TestTable:
+class TestTable(object):
     ID = 'id'
     NAME = 'name'
